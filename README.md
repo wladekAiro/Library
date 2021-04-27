@@ -8,7 +8,7 @@
 
 How to run
   Go to src/main/resources/application.yml and set your database credentials
-  In the project root run $ mvn clean sprin-boot:run
+  In the project root run $ mvn clean spring-boot:run
   In your browser visit http://localhost:8082/swagger-ui/ to view the api documentation for this app
 
 To initalize the app with sample data
