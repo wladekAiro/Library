@@ -24,7 +24,7 @@ public class StudentsController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/{studentId/rented")
+    @GetMapping("/{studentId}/rented")
     public ResponseEntity<?> getRentedBooks(@PathVariable("studentId") String studentId) {
         StudentDTO studentProfile = studentService.rentedBooks(studentId);
         return ResponseEntity.ok(studentProfile);
