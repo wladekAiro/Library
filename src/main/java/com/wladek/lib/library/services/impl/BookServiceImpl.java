@@ -5,12 +5,14 @@ import com.wladek.lib.library.models.entities.BookEntity;
 import com.wladek.lib.library.repositories.BookRepo;
 import com.wladek.lib.library.services.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,8 +26,10 @@ public class BookServiceImpl implements BooksService {
 
     @Override
     public Page<BookDTO> listBooks(int page, int size) {
+        page = page - 1;
         Pageable pageable = PageRequest.of(page, size);
-        return bookRepo.findAll(pageable).map(BookEntity::toBookDTO);
+        Page<BookEntity> bookEntityPage = bookRepo.findAll(pageable);
+        return bookEntityPage.map(BookEntity::toBookDTO);
     }
 
     @Override
