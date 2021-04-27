@@ -53,7 +53,7 @@ public class BooksController {
         return new ResponseEntity<>(updatedBook, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("init")
+    @GetMapping("/init")
     public ResponseEntity<String> init() {
         booksService.init();
         return ResponseEntity.ok("Books initialised");

@@ -46,7 +46,7 @@ public class StudentsController {
         return ResponseEntity.ok(rentResponseDTO);
     }
 
-    @GetMapping("init")
+    @GetMapping("/init")
     public ResponseEntity<String> init() {
         studentService.init();
         return ResponseEntity.ok("Students initialised");
