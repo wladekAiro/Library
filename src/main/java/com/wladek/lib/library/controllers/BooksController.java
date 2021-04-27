@@ -28,7 +28,7 @@ public class BooksController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getBookList(
+    public ResponseEntity<Page<BookDTO>> getBookList(
             @RequestParam(name = "page", defaultValue = "1", required = false) int page,
             @RequestParam(name = "pageSize", defaultValue = "10", required = false) int size) {
         Page<BookDTO> bookDTOPage = booksService.listBooks(page, size);
@@ -48,7 +48,7 @@ public class BooksController {
     }
 
     @PutMapping("/book/{bookId}")
-    public ResponseEntity<?> updateBook(@PathParam("bookId") String bookId,@RequestBody BookDTO bookDTO) {
+    public ResponseEntity<BookDTO> updateBook(@PathParam("bookId") String bookId,@RequestBody BookDTO bookDTO) {
         BookDTO updatedBook = booksService.updateBook(bookDTO, bookId);
         return new ResponseEntity<>(updatedBook, HttpStatus.ACCEPTED);
     }

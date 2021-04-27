@@ -27,19 +27,19 @@ public class StudentsController {
     }
 
     @PostMapping("/student/create")
-    public ResponseEntity<?> createStudent(@RequestBody StudentDTO studentDTO) {
+    public ResponseEntity<StudentDTO> createStudent(@RequestBody StudentDTO studentDTO) {
         StudentDTO created = studentService.createStudent(studentDTO);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @GetMapping("/{studentId}/rented")
-    public ResponseEntity<?> getRentedBooks(@PathVariable("studentId") String studentId) {
+    public ResponseEntity<StudentDTO> getRentedBooks(@PathVariable("studentId") String studentId) {
         StudentDTO studentProfile = studentService.rentedBooks(studentId);
         return ResponseEntity.ok(studentProfile);
     }
 
     @PutMapping("/student/{studentId}/book")
-    public ResponseEntity<?> bookAction(
+    public ResponseEntity<RentResponseDTO> bookAction(
             @PathVariable("studentId") String studentId,
             @RequestBody BookAction bookAction) {
         RentResponseDTO rentResponseDTO = studentService.bookAction(studentId, bookAction);
