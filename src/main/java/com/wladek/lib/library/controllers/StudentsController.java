@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/api/v1/students")
 public class StudentsController {
@@ -24,6 +26,11 @@ public class StudentsController {
     @Autowired
     public StudentsController(StudentService studentService) {
         this.studentService = studentService;
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<StudentDTO>> list() {
+        return ResponseEntity.ok(studentService.list());
     }
 
     @PostMapping("/student/create")

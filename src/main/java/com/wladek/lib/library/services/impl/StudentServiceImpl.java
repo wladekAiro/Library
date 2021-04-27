@@ -68,6 +68,11 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+    @Override
+    public List<StudentDTO> list() {
+        return studentRepo.findAll().stream().map(StudentEntity::studentDTO).collect(Collectors.toList());
+    }
+
     private RentResponseDTO rentBook(StudentEntity studentEntity, BookEntity bookEntity) {
         if (studentEntity.getBooks().contains(bookEntity)) {
             return new RentResponseDTO("Failed","You haven't returned your rented copy of this book");

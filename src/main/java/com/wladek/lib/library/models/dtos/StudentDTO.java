@@ -3,6 +3,7 @@ package com.wladek.lib.library.models.dtos;
 import com.wladek.lib.library.models.entities.StudentEntity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDTO implements Serializable {
@@ -10,7 +11,7 @@ public class StudentDTO implements Serializable {
     private String username;
     private String fullName;
 
-    private List<BookDTO> booksRented;
+    private List<BookDTO> booksRented = new ArrayList<>();
 
     public StudentDTO(){}
 
