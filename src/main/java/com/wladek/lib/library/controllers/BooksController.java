@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,13 +36,13 @@ public class BooksController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> searchBook(@RequestParam(name = "searchTerm") String searchTerm ){
+    public ResponseEntity<List<BookDTO>> searchBook(@RequestParam(name = "searchTerm") String searchTerm ){
         List<BookDTO> bookDTOPage = booksService.search(searchTerm);
         return ResponseEntity.ok(bookDTOPage);
     }
 
-    @PutMapping("/book/create")
-    public ResponseEntity<?> createBook(@RequestBody BookDTO bookDTO) {
+    @PostMapping("/book/create")
+    public ResponseEntity<BookDTO> createBook(@RequestBody BookDTO bookDTO) {
         BookDTO newBook = booksService.createBook(bookDTO);
         return new ResponseEntity<>(newBook, HttpStatus.CREATED);
     }
