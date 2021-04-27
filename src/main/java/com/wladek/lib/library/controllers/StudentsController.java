@@ -5,9 +5,11 @@ import com.wladek.lib.library.models.dtos.RentResponseDTO;
 import com.wladek.lib.library.models.dtos.StudentDTO;
 import com.wladek.lib.library.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,12 @@ public class StudentsController {
     @Autowired
     public StudentsController(StudentService studentService) {
         this.studentService = studentService;
+    }
+
+    @PostMapping("/student/create")
+    public ResponseEntity<?> createStudent(@RequestBody StudentDTO studentDTO) {
+        StudentDTO created = studentService.createStudent(studentDTO);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @GetMapping("/{studentId}/rented")
