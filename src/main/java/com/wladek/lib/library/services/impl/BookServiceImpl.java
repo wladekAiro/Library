@@ -10,6 +10,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class BookServiceImpl implements BooksService {
     private final BookRepo bookRepo;
@@ -23,6 +26,11 @@ public class BookServiceImpl implements BooksService {
     public Page<BookDTO> listBooks(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return bookRepo.findAll(pageable).map(BookEntity::toBookDTO);
+    }
+
+    @Override
+    public List<BookDTO> search(String searchTerm) {
+        return bookRepo.searchBooks("%"+ searchTerm +"%").stream().map(BookEntity::toBookDTO).collect(Collectors.toList());
     }
 
     @Override

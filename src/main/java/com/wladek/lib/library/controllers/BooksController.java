@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.websocket.server.PathParam;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/books")
@@ -30,6 +31,12 @@ public class BooksController {
             @RequestParam(name = "page", defaultValue = "1", required = false) int page,
             @RequestParam(name = "pageSize", defaultValue = "10", required = false) int size) {
         Page<BookDTO> bookDTOPage = booksService.listBooks(page, size);
+        return ResponseEntity.ok(bookDTOPage);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchBook(@RequestParam(name = "searchTerm") String searchTerm ){
+        List<BookDTO> bookDTOPage = booksService.search(searchTerm);
         return ResponseEntity.ok(bookDTOPage);
     }
 
