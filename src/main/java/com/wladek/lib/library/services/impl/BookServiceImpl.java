@@ -52,4 +52,16 @@ public class BookServiceImpl implements BooksService {
         bookEntity.setTitle(bookDTO.getTitle());
         return bookRepo.save(bookEntity).toBookDTO();
     }
+
+    @Override
+    public void init() {
+        for (int i = 0; i < 10; i++) {
+            BookDTO bookDTO = new BookDTO();
+            bookDTO.setAuthor("author" + i);
+            bookDTO.setAvailable(i % 2 == 0);
+            bookDTO.setCopies((long) (i * 2));
+            bookDTO.setTitle("Title " + i);
+            createBook(bookDTO);
+        }
+    }
 }

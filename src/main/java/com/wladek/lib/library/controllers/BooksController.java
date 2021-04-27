@@ -52,4 +52,10 @@ public class BooksController {
         BookDTO updatedBook = booksService.updateBook(bookDTO, bookId);
         return new ResponseEntity<>(updatedBook, HttpStatus.ACCEPTED);
     }
+
+    @GetMapping("init")
+    public ResponseEntity<String> init() {
+        booksService.init();
+        return ResponseEntity.ok("Books initialised");
+    }
 }

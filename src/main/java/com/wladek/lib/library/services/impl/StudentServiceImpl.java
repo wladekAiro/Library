@@ -58,6 +58,16 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+    @Override
+    public void init() {
+        for (int i = 0; i < 5; i++) {
+            StudentDTO studentDTO = new StudentDTO();
+            studentDTO.setUsername("student" + i);
+            studentDTO.setFullName(" Test Student" + i);
+            createStudent(studentDTO);
+        }
+    }
+
     private RentResponseDTO rentBook(StudentEntity studentEntity, BookEntity bookEntity) {
         if (studentEntity.getBooks().contains(bookEntity)) {
             return new RentResponseDTO("Failed","You haven't returned your rented copy of this book");
@@ -80,7 +90,7 @@ public class StudentServiceImpl implements StudentService {
         if (studentEntity.getBooks().contains(bookEntity)) {
             studentEntity.getBooks().remove(bookEntity);
             studentRepo.save(studentEntity);
-            
+
             bookEntity.setCopies(bookEntity.getCopies() + 1);
             bookRepo.save(bookEntity);
 

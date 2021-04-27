@@ -45,4 +45,10 @@ public class StudentsController {
         RentResponseDTO rentResponseDTO = studentService.bookAction(studentId, bookAction);
         return ResponseEntity.ok(rentResponseDTO);
     }
+
+    @GetMapping("init")
+    public ResponseEntity<String> init() {
+        studentService.init();
+        return ResponseEntity.ok("Students initialised");
+    }
 }

@@ -10,4 +10,5 @@ public interface BooksService {
     List<BookDTO> search(String searchTerm);
     BookDTO createBook(BookDTO bookDTO);
     BookDTO updateBook(BookDTO bookDTO, String bookId);
+    void init();
 }

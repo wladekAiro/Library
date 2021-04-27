@@ -8,4 +8,5 @@ public interface StudentService {
     StudentDTO createStudent(StudentDTO studentDTO);
     StudentDTO rentedBooks(String studentId);
     RentResponseDTO bookAction(String studentId, BookAction bookAction);
+    void init();
 }
