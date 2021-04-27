@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface BookRepo extends JpaRepository<BookEntity, Long> {
     BookEntity findByClientId(String clientId);
-    @Query( value = " select * from books b where b.author ilike ?searchTerm or b.title ilike ?searchTerm", nativeQuery = true)
+    @Query( value = " select * from books b where b.author ilike ?1 or b.title ilike ?1", nativeQuery = true)
     List<BookEntity> searchBooks(@Param("searchTerm") String searchTerm);
 }
